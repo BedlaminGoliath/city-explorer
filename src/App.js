@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css';
 import axios from 'axios';
 import Map from './Map';
-// import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, } from 'react-bootstrap';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,14 +12,14 @@ class App extends React.Component {
       location: '',
       lat: '',
       lon: '',
-      mapUrl:''
+      mapUrl: ''
     }
   }
   handleChange = (event) => {
     this.setState({ searchQuery: event.target.value })
   }
 
-  getLocation =  async () => {
+  getLocation = async () => {
 
     // key: YOUR_ACCESS_TOKEN
     // q: SEARCH_STRING
@@ -30,30 +30,40 @@ class App extends React.Component {
     // .query
     const response = await axios.get(url);
     console.log('response Object: ', response);
-    console.log(response.data[0].lat , response.data[0].lon);
-    this.setState({ location: response.data[0].display_name, lat: response.data[0].lat, lon: response.data[0].lon})
+    console.log(response.data[0].lat, response.data[0].lon);
+    this.setState({ location: response.data[0].display_name, lat: response.data[0].lat, lon: response.data[0].lon })
   }
 
   render() {
     return (
+      <>
       <div className="App">
-        <h1>City Explorer</h1>
+        <div className='body'>
 
-        <input type="text" onChange={this.handleChange}
-          placeholder="search for your city here"
-        />
-        <Map map={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12`}/>
-        <button onClick={this.getLocation}>Explore!</button>
-        <h2>The City you searched for:{this.state.location}</h2>
-        <p>{this.state.lat}, {this.state.lon}</p>
+          <h1>City Explorer</h1>
+
+            <Form>
+          <div className='form'>
+            <Form.Label></Form.Label>
+            <Form.Control
+          type="text" onChange={this.handleChange}
+            placeholder="search for your city here"
+             />
+          <Button onClick={this.getLocation}>Explore!</Button>
+            </div>
+            </Form>
+          <h2>The City you searched for:{this.state.location.display_name}</h2>
+          {this.state.location &&
+          <Map map={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12`} />
+        }
+          <p>{this.state.lat}, {this.state.lon}</p>
+            
+        </div>
         {/* <Container>
-        <Form>
-          <Form.Label>
 
-          </Form.Label>
-        </Form>
       </Container> */}
       </div>
+      </>
     );
   }
 }

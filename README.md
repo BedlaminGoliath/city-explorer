@@ -23,8 +23,6 @@ This project is going to be done via : CSS, React, and JavaScript.
 ## Credit and Collaborations
 <!-- Shout out to Hexx for helping me out along the way. Im sure there will be more people to thanks but for now its just Hexx... so thanks! -->
 
-
-
 Name of feature: __Form__
 
 Estimate of time needed to complete: 30 minutes
@@ -32,5 +30,15 @@ Estimate of time needed to complete: 30 minutes
 Start time: 8pm
 
 Finish time: 9pm_
+
+Actual time needed to complete: 1hr.
+
+Name of feature: __Map__
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 5pm
+
+Finish time: 5:45pm_
 
 Actual time needed to complete: 1hr.

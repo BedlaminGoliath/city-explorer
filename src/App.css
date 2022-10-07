@@ -7,6 +7,23 @@
   pointer-events: none;
 }
 
+.body{
+background-color: rgb(241, 244, 255);
+}
+
+.form{
+
+}
+h1{
+  background-color: blue;
+  color: aliceblue;
+
+}
+h2{
+color: blue;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
