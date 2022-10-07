@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css';
 import axios from 'axios';
+import Map from './Map';
 // import { Form, Button, Container } from 'react-bootstrap';
 
 class App extends React.Component {
@@ -10,7 +11,8 @@ class App extends React.Component {
       searchQuery: '',
       location: '',
       lat: '',
-      lon: ''
+      lon: '',
+      mapUrl:''
     }
   }
   handleChange = (event) => {
@@ -40,7 +42,7 @@ class App extends React.Component {
         <input type="text" onChange={this.handleChange}
           placeholder="search for your city here"
         />
-
+        <Map map={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12`}/>
         <button onClick={this.getLocation}>Explore!</button>
         <h2>The City you searched for:{this.state.location}</h2>
         <p>{this.state.lat}, {this.state.lon}</p>
