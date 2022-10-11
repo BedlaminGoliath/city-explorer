@@ -21,7 +21,7 @@ class App extends React.Component {
 
   getLocation = async () => {
 
-    // things
+    // things to change for the sake of the pull request
     // key: YOUR_ACCESS_TOKEN
     // q: SEARCH_STRING
     // format: 'json'
