@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css';
 import axios from 'axios';
+import Weather from './Weather';
 import Map from './Map';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -17,7 +18,9 @@ class App extends React.Component {
       lat: '',
       lon: '',
       mapUrl: '',
-      errorMessage: ''
+      errorMessage: '',
+      weather: '',
+      description: '',
     }
   }
   handleChange = (event) => {
@@ -36,9 +39,30 @@ class App extends React.Component {
       // .query
       const response = await axios.get(url);
       console.log('response Object: ', response);
+      console.log(this.state.searchQuery);
       console.log(response.data[0].lat, response.data[0].lon);
-      this.setState({ location: response.data[0].display_name, lat: response.data[0].lat, lon: response.data[0].lon, errorMessage: false });
+      this.setState({ location: response.data[0].display_name, lat: response.data[0].lat, lon: response.data[0].lon, errorMessage: false }, ()=> this.getWeather() );
 
+    } catch (error) {
+      this.setState({ errorMessage: true })
+    }
+  }
+
+// go line by line
+
+  getWeather = async () => {
+
+    try {
+      const url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.searchQuery}`;
+      console.log('url ', url);
+      // .query
+      console.log('searchquery ', this.state.searchQuery);
+      
+      // const response = await axios.get(url, {params: {latitude : lat , longitude: lon, searchQuery: this.state.searchQuery}});
+        const response = await axios.get(url);
+      console.log('response Object: ', response);
+      console.log(response.data);
+      this.setState({ weather: response.data, errorMessage: false } );
     } catch (error) {
       this.setState({ errorMessage: true })
     }
@@ -65,6 +89,10 @@ class App extends React.Component {
             {this.state.location &&
               <Map map={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12`} />
             }
+            <Weather
+            weather={this.state.weather}
+            description={this.state.description}
+             />
             <Accordion>
               <Accordion.Item eventKey='0'>
                 <Accordion.Header>
