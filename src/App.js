@@ -19,8 +19,7 @@ class App extends React.Component {
       lon: '',
       mapUrl: '',
       errorMessage: '',
-      weather: '',
-      description: '',
+      weather: []
     }
   }
   handleChange = (event) => {
@@ -28,7 +27,8 @@ class App extends React.Component {
   }
 
   getLocation = async (event) => {
-    this.setState({searchQuery: event.target.value})
+    event.preventDefault();
+    // this.setState({ searchQuery: event.target.value })
     // things to change for the sake of the pull request
     // key: YOUR_ACCESS_TOKEN
     // q: SEARCH_STRING
@@ -41,14 +41,14 @@ class App extends React.Component {
       console.log('response Object: ', response);
       console.log(this.state.searchQuery);
       console.log(response.data[0].lat, response.data[0].lon);
-      this.setState({ location: response.data[0].display_name, lat: response.data[0].lat, lon: response.data[0].lon, errorMessage: false }, ()=> this.getWeather() );
+      this.setState({ location: response.data[0].display_name, lat: response.data[0].lat, lon: response.data[0].lon, errorMessage: false }, () => this.getWeather());
 
     } catch (error) {
       this.setState({ errorMessage: true })
     }
   }
 
-// go line by line
+  // go line by line
 
   getWeather = async () => {
 
@@ -57,12 +57,12 @@ class App extends React.Component {
       console.log('url ', url);
       // .query
       console.log('searchquery ', this.state.searchQuery);
-      
+
       // const response = await axios.get(url, {params: {latitude : lat , longitude: lon, searchQuery: this.state.searchQuery}});
-        const response = await axios.get(url);
+      const response = await axios.get(url);
       console.log('response Object: ', response);
       console.log(response.data);
-      this.setState({ weather: response.data, errorMessage: false } );
+      this.setState({ weather: response.data,errorMessage: false });
     } catch (error) {
       this.setState({ errorMessage: true })
     }
@@ -81,7 +81,7 @@ class App extends React.Component {
                 type="text" onChange={this.handleChange}
                 placeholder="search for your city here"
               />
-              <Button onClick ={this.getLocation}>Explore!</Button>
+              <Button onClick={this.getLocation}>Explore!</Button>
               {this.state.errorMessage &&
                 < Alert key='primary' type='danger'><p> enter a valid query</p></Alert>}
             </Form>
@@ -90,9 +90,9 @@ class App extends React.Component {
               <Map map={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12`} />
             }
             <Weather
-            weather={this.state.weather}
-            description={this.state.description}
-             />
+              weather={this.state.weather}
+             
+            />
             <Accordion>
               <Accordion.Item eventKey='0'>
                 <Accordion.Header>

@@ -16,7 +16,9 @@ So I would need to have access to an API, then I would use reach to build a form
 This project is going to be done via : CSS, React, and JavaScript.
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
+11/13 - created the get weather app to get make a call to my server to retrieve the weather.
+11/14 - troubleshooting for issues when it comes to retrieveing my data
+11/15 - created Weather component to render the info that I was recieving from my server.
 
 10-05-2022 9:00pm - I created the form to take in the users input -->
 
@@ -42,3 +44,24 @@ Start time: 5pm
 Finish time: 5:45pm_
 
 Actual time needed to complete: 1hr.
+Name of feature: __Recieve data___
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 1pm
+
+Finish time: 5:45pm_
+
+Actual time needed to complete: 5hr.
+
+Name of feature: __Weather Component__
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 5pm
+
+Finish time: 5:45pm_
+
+Actual time needed to complete: 1hr.
+
+
