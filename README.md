@@ -64,4 +64,5 @@ Finish time: 5:45pm_
 
 Actual time needed to complete: 1hr.
 
-
+![image](./whiteboard.png);
+![image1](./image.png);
