@@ -72,7 +72,7 @@ class App extends React.Component {
       console.log(response.data);
       this.setState({ weather: response.data });
     } catch (error) {
-      console.log("error in getweather : ", error.response.data)
+      // console.log("error in getweather : ", error.response.data)
       this.setState({
         displayResults: false,
         displayError: true,
@@ -94,7 +94,7 @@ class App extends React.Component {
       console.log('movie' , response.data);
       this.setState({ movies: response.data });
     } catch (error) {
-      console.log("error in getweather : ", error.response.data)
+      // console.log("error in getweather : ", error.response.data)
       this.setState({
         displayResults: false,
         displayError: true,

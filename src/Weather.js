@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
+import WeatherDay from './WeatherDay';
 
 class Weather extends React.Component {
     render() {
@@ -7,12 +7,10 @@ class Weather extends React.Component {
             <>
 
                 {this.props.weather.map((day, idx) => (
-                    <Card style={{ width: '18rem' }} key={idx}>
-                        <Card.Body>
-                            <Card.Title>{day.date}</Card.Title>
-                            <Card.Text>{day.description}</Card.Text>
-                        </Card.Body>
-                    </Card>
+                   < WeatherDay
+                    key={idx}
+                    day={day}
+                   />
                 ))
                 }
             </>
